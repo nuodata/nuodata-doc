@@ -7,7 +7,7 @@ The Kittn API uses the following error codes:
 
 Error Code | Meaning
 ---------- | -------
-400 | Bad Request -- Your request sucks
+400 | Bad Request -- You need to modify your request so that it complies with the rules
 401 | Unauthorized -- Your API key is wrong
 403 | Forbidden -- The kitten requested is hidden for administrators only
 404 | Not Found -- The specified kitten could not be found
