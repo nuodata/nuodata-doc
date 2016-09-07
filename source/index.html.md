@@ -24,7 +24,12 @@ Nuodata API is for now without authentication but we are working on it to bring 
 
 # Build your schema
 
-Use a client like <a href="https://www.pgadmin.org/">pgAdmin</a> to create the data you need.
+To build your database schema or add, update or delete data manually you can use a GUI client. Nuodata recommends
+
+* PSequel http://www.psequel.com/ provides a clean and simple interface for you to perform common PostgreSQL tasks quickly. It is free of charge.
+* Postico https://eggerapps.at/postico/ makes PostgreSQL approachable.
+
+You can follow [https://wiki.postgresql.org/wiki/Community_Guide_to_PostgreSQL_GUI_Tools](this guide) for a comprehensive list of applications you can use to connect to PostgreSQL.
 
 # API
 
@@ -87,6 +92,9 @@ curl -X PATCH 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
   // fetch
   fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*', {
     method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
     body: JSON.stringify({
       age: 30
     })
@@ -156,6 +164,9 @@ curl -X POST 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
   // fetch
   fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*', {
     method: 'POST',
+    headers: {
+      'Content-Type': 'application/json'
+    }
     body: JSON.stringify({
       name: "Somebody",
       age: 30
@@ -202,12 +213,12 @@ curl -X POST 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
 Fetch the records of your table or view, filter, limit and order according to your needs.
 
 ```shell
-curl -X GET 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
+curl -X DELETE 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
 ```
 
 ```javascript
   // fetch
-  fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*',{
+  fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*', {
     method: 'DELETE'
   }).then(function(response) {
     response.json().forEach(function(value) {
