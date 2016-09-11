@@ -138,10 +138,10 @@
 <h2 id="fetch-your-table-or-view-data">Fetch your table or view data</h2>
 
 <p>Fetch the records of your table or view, filter, limit and order according to your needs.</p>
-<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp;name=like::J*'</span>
+<pre class="highlight shell"><code>curl -X GET <span class="s1">'https://mydb.db.nuodata.io/data/users?_limit=2&amp;name=like::J*'</span>
 </code></pre>
 <pre class="highlight javascript"><code>  <span class="c1">// fetch</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp;name=like::J*'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mydb.db.nuodata.io/data/users?_limit=2&amp;name=like::J*'</span><span class="p">).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
       <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">value</span><span class="p">.</span><span class="nx">name</span><span class="p">);</span>
     <span class="p">});</span>
@@ -178,8 +178,8 @@
 </tr>
 </thead><tbody>
 <tr>
-<td>limit</td>
-<td>none</td>
+<td>_limit</td>
+<td>25</td>
 <td>25</td>
 <td>To limit the number of records to return</td>
 </tr>
@@ -190,10 +190,16 @@
 <td>To filter the data given some column</td>
 </tr>
 <tr>
-<td>order</td>
+<td>_order</td>
 <td>none</td>
 <td>`<column-name>::&lt;desc</td>
 <td>asc&gt;`</td>
+</tr>
+<tr>
+<td>_page</td>
+<td>1</td>
+<td>3</td>
+<td>The page number, depending on the limit that was set (which defaults to 25)</td>
 </tr>
 </tbody></table>
 
@@ -203,10 +209,10 @@
 
 <p>Update the records of your table or view, select using filter and limit according to your needs.</p>
 <pre class="highlight shell"><code><span class="c"># Update</span>
-curl -X PATCH <span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp;name=like::J*'</span>
+curl -X PATCH <span class="s1">'https://mydb.db.nuodata.io/data/users?_limit=2&amp;name=like::J*'</span>
 </code></pre>
 <pre class="highlight javascript"><code>  <span class="c1">// fetch</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp;name=like::J*'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mydb.db.nuodata.io/data/users?_limit=2&amp;name=like::J*'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'PATCH'</span><span class="p">,</span>
     <span class="na">headers</span><span class="p">:</span> <span class="p">{</span>
       <span class="s1">'Content-Type'</span><span class="p">:</span> <span class="s1">'application/json'</span>
@@ -258,12 +264,6 @@ curl -X PATCH <span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&am
 <th>Description</th>
 </tr>
 </thead><tbody>
-<tr>
-<td>limit</td>
-<td>none</td>
-<td>25</td>
-<td>To limit the number of records to return</td>
-</tr>
 <tr>
 <td>column-name</td>
 <td><code class="prettyprint">eq::&lt;operand&gt;</code></td>
@@ -335,10 +335,10 @@ curl -X POST <span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp
 <h2 id="fetch-your-table-or-view-data">Fetch your table or view data</h2>
 
 <p>Fetch the records of your table or view, filter, limit and order according to your needs.</p>
-<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp;name=like::J*'</span>
+<pre class="highlight shell"><code>curl -X DELETE <span class="s1">'https://mydb.db.nuodata.io/data/users?_limit=2&amp;name=like::J*'</span>
 </code></pre>
 <pre class="highlight javascript"><code>  <span class="c1">// fetch</span>
-  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp;name=like::J*'</span><span class="p">,</span> <span class="p">{</span>
+  <span class="nx">fetch</span><span class="p">(</span><span class="s1">'https://mydb.db.nuodata.io/data/users?_limit=2&amp;name=like::J*'</span><span class="p">,</span> <span class="p">{</span>
     <span class="na">method</span><span class="p">:</span> <span class="s1">'DELETE'</span>
   <span class="p">}).</span><span class="nx">then</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">response</span><span class="p">)</span> <span class="p">{</span>
     <span class="nx">response</span><span class="p">.</span><span class="nx">json</span><span class="p">().</span><span class="nx">forEach</span><span class="p">(</span><span class="kd">function</span><span class="p">(</span><span class="nx">value</span><span class="p">)</span> <span class="p">{</span>
@@ -387,7 +387,7 @@ curl -X POST <span class="s1">'https://mydb.db.nuodata.io/data/users?limit=2&amp
 </tr>
 </thead><tbody>
 <tr>
-<td>limit</td>
+<td>_limit</td>
 <td>none</td>
 <td>25</td>
 <td>To limit the number of records to return</td>
