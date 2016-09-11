@@ -38,12 +38,12 @@ You can follow [https://wiki.postgresql.org/wiki/Community_Guide_to_PostgreSQL_G
 Fetch the records of your table or view, filter, limit and order according to your needs.
 
 ```shell
-curl -X GET 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
+curl -X GET 'https://mydb.db.nuodata.io/data/users?_limit=2&name=like::J*'
 ```
 
 ```javascript
   // fetch
-  fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*').then(function(response) {
+  fetch('https://mydb.db.nuodata.io/data/users?_limit=2&name=like::J*').then(function(response) {
     response.json().forEach(function(value) {
       console.log(value.name);
     });
@@ -73,9 +73,10 @@ curl -X GET 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
 
 Parameter | Default | Example | Description
 --------- | ------- | -------- | ---
-limit     | none    | 25 | To limit the number of records to return
+\_limit     | 25    | 25 | To limit the number of records to return
 column-name | `eq::<operand>` | `<operator>::<operand>` | To filter the data given some column
-order | none | `<column-name>::<desc|asc>` | To order your data given some column, use the default view/table ordering if nothing is specified.
+\_order | none | `<column-name>::<desc|asc>` | To order your data given some column, use the default view/table ordering if nothing is specified.
+\_page | 1 | 3 | The page number, depending on the limit that was set (which defaults to 25)
 
 The end point returns an array of records, or an empty array if no records are in the table. If you want to fetch only one record, you can limit the number of result returned but it will still return an array.
 
@@ -85,12 +86,12 @@ Update the records of your table or view, select using filter and limit accordin
 
 ```shell
 # Update
-curl -X PATCH 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
+curl -X PATCH 'https://mydb.db.nuodata.io/data/users?_limit=2&name=like::J*'
 ```
 
 ```javascript
   // fetch
-  fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*', {
+  fetch('https://mydb.db.nuodata.io/data/users?_limit=2&name=like::J*', {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json'
@@ -136,7 +137,6 @@ curl -X PATCH 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
 
 Parameter | Default | Example | Description
 --------- | ------- | -------- | ----------
-limit     | none    | 25 | To limit the number of records to return
 column-name | `eq::<operand>` | `<operator>::<operand>` | To filter the data given some column
 
 <aside class="warning">
@@ -213,12 +213,12 @@ curl -X POST 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
 Fetch the records of your table or view, filter, limit and order according to your needs.
 
 ```shell
-curl -X DELETE 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
+curl -X DELETE 'https://mydb.db.nuodata.io/data/users?_limit=2&name=like::J*'
 ```
 
 ```javascript
   // fetch
-  fetch('https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*', {
+  fetch('https://mydb.db.nuodata.io/data/users?_limit=2&name=like::J*', {
     method: 'DELETE'
   }).then(function(response) {
     response.json().forEach(function(value) {
@@ -260,7 +260,7 @@ curl -X DELETE 'https://mydb.db.nuodata.io/data/users?limit=2&name=like::J*'
 
 Parameter | Default | Example | Description
 --------- | ------- | -------- | ---
-limit     | none    | 25 | To limit the number of records to return
+\_limit     | none    | 25 | To limit the number of records to return
 column-name | `eq::<operand>` | `<operator>::<operand>` | To filter the data given some column
 
 The end point returns an array of deleted records, or an empty array if no records were deleted in the table.
